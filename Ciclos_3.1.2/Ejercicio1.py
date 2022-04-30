@@ -24,7 +24,7 @@ while True:
     elif opc == 9:
         break
     else:
-        print("Invalido...")
+        print("Invalido..")
 
 print(f"""
         - - - Boleta - - - 
