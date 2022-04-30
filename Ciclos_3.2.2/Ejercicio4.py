@@ -74,6 +74,7 @@ while True:
                                             break
                                     if valueCorreo:
                                         print("Correo Guardado correctamente!")
+                                        break
                                     else:
                                         print("Correo Invalido!")
                                 except ValueError:
