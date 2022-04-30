@@ -1,5 +1,5 @@
 vocales = "aeiou"
-frase = str(input("Palabra: "))
+frase = str(input(": "))
 cont = 0
 for i in frase:
     for x in vocales:
