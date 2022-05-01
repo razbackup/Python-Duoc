@@ -20,3 +20,4 @@ sync.sort()
 for i in sync:
     for x in i:
         print(x)
+        
