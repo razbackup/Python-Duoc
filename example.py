@@ -10,3 +10,4 @@ def sayMsg(msg):
         return msg
 
 print(sayMsg(True))
+
