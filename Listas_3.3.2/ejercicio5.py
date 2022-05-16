@@ -1,0 +1,10 @@
+names = list()
+lastNames = list()
+for i in range(1,4):
+    name = str(input(f"Nombre {i}: "))
+    lastName = str(input(f"Apellido {i}: "))
+    names.append(name)
+    lastNames.append(lastName)
+lastNames.sort()
+names.sort()
+print(f"Nombres: {names} Apellidos: {lastNames}")
