@@ -25,5 +25,3 @@ def trash(path):
 # for i in dirt:
 #     filez.write(f"{i}\n")
 # 
-
-
