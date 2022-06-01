@@ -1,8 +1,7 @@
 from numpy import *
 from random import randint as rd
-leng = [i for i in range(0,100)]
 arregloA = array([rd(0,500) for i in range(0,100)])
-arregloPar = [arregloA[i] for i in leng if i%2 == 0]
+arregloPar = array([arregloA[i] for i in range(0,len(arregloA)) if i%2 == 0])
 print(f"Elementos Pares: {arregloPar}")
 print(f"Elemento Maximo: {arregloA.max()}")
 print(f"Elemento Posicion Max: {max(where(arregloA == arregloA.max())[0])}")
