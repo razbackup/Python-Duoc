@@ -13,6 +13,6 @@ while True:
 for i in names:
     indexs.append(len(i))
 minElement = names.index(min(names))
-print(f"Elementos de la lista {names} el elemento borrado fue {names[minElement]}")
+print(f"Elementos de la lista {names} el elemento borrado fue ({names[minElement]})")
 names.pop(minElement)
 print(f"Tu lista actuale es: {names}")
