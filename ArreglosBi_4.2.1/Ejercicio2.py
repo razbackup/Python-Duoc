@@ -12,3 +12,4 @@ print(arr.sum())
 print(arr.max())
 print(arr.min())
 print(diag([arr[0][0],arr[1][1],arr[2][2]]))
+
