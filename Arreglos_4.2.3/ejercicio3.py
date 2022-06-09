@@ -10,7 +10,6 @@ print(arr)
 for i in arr:
     cont+=1
     print(f" Suma fila {cont} {i.sum()}")
-    pass
 total = 0
 x = 0
 cont = 0

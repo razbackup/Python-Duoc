@@ -1,3 +1,4 @@
+from secrets import choice
 import string as st
 import random as rd
 from numpy import *
