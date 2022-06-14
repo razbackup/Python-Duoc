@@ -1,13 +1,10 @@
-def example(any):
-    return type(any)
+def algoquefunciona(p,d):
+    return p-(p*d/100)
+datos = [1000,10]
+print(algoquefunciona(*datos))
 
-print(example(True))
 
-def sayMsg(msg):
-    if isinstance(msg,(str)) == False:
-        return "not is string!"
-    else:
-        return msg
+def xd(a,b):
+    print(a-b)
 
-print(sayMsg(True))
-
+xd(b=20,a=10)
