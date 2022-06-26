@@ -1,72 +1,73 @@
-import functions as fn
-from random import randint as rd
-on = True
-productos = []
-while True:
-    print("#################")
+from random import randint
+def validador_codigo(codigo):
+        if len(codigo) == 4:
+            return codigo
+        else:
+            return True
+def comparador_codigo(codigo,codigos):
+    if not codigos.count(codigo):
+        return codigo
+    else:
+        return True
 
-    print("1) Ingresar producto")
-    print("2) Buscar producto")
-    print("3) Imprimir Orden de compra")
-
-    print("#################")
-    opc = int(input("Opcion: "))
-    if opc == 1:
-        try:
-            while True:
-                cod = str(input("Codigo: ")).upper()
-                nombre = str(input("Nombre: ")).upper()
-                precio = int(input("Precio: "))
-                medida = str(input("Medida: ")).upper()
-                res = fn.producto(cod,nombre,precio,medida,productos)
-                if not isinstance(res,list):
-                    print(res)
-                else:
-                    productos.append(res)
-                    print("Producto guardado correctamente.")
-                    break 
-        except ValueError:
-            print("Precio tiene un error, no es del tipo de dato correcto, ingrese la Opcion 1 nuevamente.")
-    elif opc == 2:
-        while True:
-            cod = str(input("Codigo: ")).upper()
-            res = fn.buscarProducto(cod,productos)
-            if not res:
-                print("Codigo ingresado no encontrado...")
-                break
-            else:
-                print("#################")
-
-                print(F"Codigo Buscado: {res[0]}")
-                print(F"Nombre: {res[1]}")
-                print(F"Precio: {res[2]}")
-                print(F"Medida: {res[3]}")
-
-                print("#################")
-                break
-    elif opc == 3:
-        while True:
-            provedor = str(input("Provedor: ")).upper()
-            n_orden = rd(1,1000)
-            cod = str(input("Codigo del producto: ")).upper()
-            cantidad = int(input("Cantidad: "))
-            orden = fn.generarOrden(provedorfn.buscarProducto(cod))
-            if not (orden[0] or orden[1]):
-                print("Nombre del provedor o la cantidad no puede ser nula/o")
-            else:
-                print(f"""
-                Orden: {n_orden}
-                Provedor: {provedor}
-                Cantidad: {cantidad}
-
-                Codigo Producto: {orden[1][0]}
-                Nombre: {orden[1][1]}
-                Precio: {orden[1][2]} c/u
-                Medida: {orden[1][3]}
-
-                Precio X Cantidad: {orden[0]}
-                
-            """)
+def guardar_producto(codigo):
+    while True:
+        nombre = str(input("Nombre: ")).upper().strip()
+        if len(nombre) < 3:
+            print("Nombre tiene que ser mayor a 3 caracteres...")
+        else:
+            print("Nombre guardado correctamente...")
             break
+    while True:
+        try:
+            precio = int(input("Precio: "))
+            if precio < 1:
+                print("Precio tiene que ser mayor a 0")
+            else:
+                print("Precio guardado correctamente...")
+                break
+        except ValueError:
+            print("Erro tipo de valor no valido.")
+    while True:
+        medida = str(input("Unidad de medida: ")).upper().strip()
+        if not medida in ['K','U']:
+            print("La unidad de medida no es valida...")
+        else:
+            print("La unidad de medida guardado correctamente...")
+            break
+    return [codigo,nombre,precio,medida]
 
-        
+def buscar_producto(codigo,codigos,productos):
+    if not codigos.count(codigo):
+        return True
+    index = codigos.index(codigo)
+    return productos[index]
+
+def generar_orden(codigo,codigos,productos):
+    valido = validador_codigo(codigo)
+    if valido == True:
+        return 'Codigo invalido..'
+    producto = buscar_producto(codigo,codigos,productos)
+    if producto == True:
+        return 'Codigo no encontrado, registrado nuevamente'
+    n_orden = randint(1,1000)
+    while True:
+        nombre = str(input("Nombre: ")).upper().strip()
+        if len(nombre) < 1:
+            print("Nombre de proveedor invalido, tiene que tener mas de un caracter.")
+        else:
+            print("Nombre de proveedor registrado")
+            break
+    while True:
+        try:
+            cantidad = int(input("Cantidad: "))
+            if cantidad < 1:
+                print("Cantidad invalida no puede ser menor a 1")
+            else:
+                print("Cantidad registrada correctamente.")
+                break
+        except ValueError:
+            print("Valor invalido")
+    total = cantidad * producto[2]
+    return [n_orden, nombre, cantidad, total, producto]
+    
