@@ -27,7 +27,7 @@ def guardar_producto(codigo):
                 print("Precio guardado correctamente...")
                 break
         except ValueError:
-            print("Erro tipo de valor no valido.")
+            print("Error tipo de valor no valido.")
     while True:
         medida = str(input("Unidad de medida: ")).upper().strip()
         if not medida in ['K','U']:
@@ -52,7 +52,7 @@ def generar_orden(codigo,codigos,productos):
         return 'Codigo no encontrado, registrado nuevamente'
     n_orden = randint(1,1000)
     while True:
-        nombre = str(input("Nombre: ")).upper().strip()
+        nombre = str(input("Nombre del proveedor: ")).upper().strip()
         if len(nombre) < 1:
             print("Nombre de proveedor invalido, tiene que tener mas de un caracter.")
         else:

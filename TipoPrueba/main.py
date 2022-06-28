@@ -1,13 +1,14 @@
-on = True
 import functions as fn
-productos = []
-codigos = []
+on = True
+productos = [] # 1 producto, 2 producto
+codigos = [] # 1 codigo, 2 codigo
 while on:
     try:
         print("-----------------------------")
         print("1) Guardar un producto.")
         print("2) Buscar un producto.")
         print("3) Generar una orden.")
+        print("4) Salir")
         print("-----------------------------")
         opc = int(input("Opcion: "))
         if opc == 1:
@@ -57,6 +58,14 @@ while on:
                     print(f" Total {orden[2]} X {orden[-1][2]}: ${orden[3]}")
                     print("================================================")
                     break
+        elif opc == 4:
+            cont = 5
+            while cont <= 5:
+                os.system('cls')
+                print(f"Programa cerrandose en {cont}")
+                cont+=1
+                time.sleep(1)
+            quit()
         else:
             print("Opcion invalida.")
     except ValueError:
