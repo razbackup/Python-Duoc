@@ -3,6 +3,7 @@ on = True
 asientos = fn.crear_asientos()
 users = []
 ruts = []
+vuelos = [] #
 while on:
     try:
         print("--------------------------------")
@@ -33,6 +34,12 @@ while on:
                     print("Asientos Disponibles")
                     print(asientos)
                     n = int(input("Numero de asiento: "))
+                    check_asiento = fn.check_asiento(str(n),asientos)
+                    if not check_asiento == True:
+                        print("--------------------------------")
+                        print("Asiento no disponible o no existe!")
+                        print("Porfavor seleccione otro")
+                        print("--------------------------------")
                     check = 0
                     if n < 1 or n > 42:
                         check = 80
@@ -40,27 +47,27 @@ while on:
                         break
                     if str(n) in [str(i) for i in range(31,43)]:
                         tipo = "Vip"
-                        valor = 24000
+                        valor = 240000
                     else:
                         tipo = "Normal"
                         valor = 78900
                     if check != -1:
                         while True:
                             try:
-                                print(f"Total a pagar: {valor}, Tipo: {tipo},")
-                                cantidad = int(input('Cantidad a pagar: '))
+                                print(f"Total a pagar: ${valor}, Tipo: {tipo},")
+                                cantidad = int(input('Cantidad a pagar: $'))
                                 if cantidad < 1:
                                     print("La cantidad a apagar no puede ser menor a 1")
                                 else:
                                     if cantidad < valor:
                                         print("La cantidad a pagar es insuficiente.")
                                     else:
-                                        print(f"Vuelo pagado!, Su vuelto es de {cantidad - valor}")
-                                        check = fn.comprar_asiento(str(n),asientos)
+                                        check = fn.comprar_asiento(str(n),asientos,vuelos)
                                         if check == -1:
-                                            print("No existe ese asiento!")
+                                            print("No existe ese asiento! / Compra anulada")
                                             break
                                         else:
+                                            print(f"Vuelo pagado!, Su vuelto es de ${cantidad - valor}")
                                             user.append(check)
                                             users.append(user)
                                             ruts.append(user[0])
@@ -70,7 +77,7 @@ while on:
                                             print(f"Nombre: {user[1]}")
                                             print(f"Numero de telefono: {user[2]}")
                                             print(f"Banco: {user[3]}")
-                                            print(f"Precio pagado: {user[-1][0]}")
+                                            print(f"Precio pagado: ${user[-1][0]}")
                                             print(f"Tipo: {user[-1][1]}")
                                             print(f"Numero de vuelo: {user[-1][2]}")
                                             print(f"Numero de asiento: {user[-1][3]}")
@@ -89,7 +96,7 @@ while on:
             if len(users) < 1:
                 print("No hay usuarios registrados")
             else:
-                anular = fn.anular_vuelo(ruts,users,asientos)
+                anular = fn.anular_vuelo(ruts,users,asientos,vuelos)
                 if anular != -1:
                     print("Vuelo anulado!")
                 else:
@@ -123,5 +130,7 @@ while on:
         elif opc == 5:
             print("Hasta luego")
             on = False
+        else:
+            print("Esa opcion no existe.")
     except ValueError:
         print("Dato invalido")

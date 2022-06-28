@@ -86,14 +86,19 @@ def registrar_pasajero(ruts):
         except ValueError:
             print("Dato invalido.")
     while True:
-        banco = str(input('Banco: ')).strip()
+        banco = str(input('Banco: ')).strip().upper()
         if len(banco) < 1 or len(banco) > 35:
             print("Banco invalido")
         else:
             print("Banco Registrado!")
             break
     return [res,nombre,telefono,banco]
-def comprar_asiento(num,asientos):
+def comprar_asiento(num,asientos,vuelos):
+    while True:
+        n_vuelo = rd(1,1000)
+        if not vuelos.count(n_vuelo):
+            vuelos.append(n_vuelo)
+            break
     check = check_asiento(num,asientos)
     if check == True:
         index = 0
@@ -105,12 +110,12 @@ def comprar_asiento(num,asientos):
             lista_index+=1
         list(asientos)[lista_index][index] = "X"
         if num in [str(i) for i in range(31,43)]:
-            return [240000,"Asiento Vip", rd(1,1000),num,lista_index,index]
+            return [240000,"Asiento Vip",n_vuelo,num,lista_index,index]
         else:
-            return [78900,"Asiento Normal",rd(1,1000),num,lista_index,index]
+            return [78900,"Asiento Normal",n_vuelo,num,lista_index,index]
     else:
         return -1
-def anular_vuelo(ruts,users,asientos):
+def anular_vuelo(ruts,users,asientos,vuelos):
     while True:
         rut = int(input('Rut (sin puntos ni gion): '))
         res = verificar_rut(rut)
@@ -125,14 +130,14 @@ def anular_vuelo(ruts,users,asientos):
         if check == False:
             index = users[index_user][-1][4]
             lista_index = users[index_user][-1][5]
-            print(users[index_user])
             list(asientos)[index][lista_index] = f"{num}"
             print("--------------------------------")
             print(f"Usuario: {users[index_user][1]}, Numero de vuelo: {users[index_user][-1][2]}, Numero de Silla: {users[index_user][-1][3]}, Valor del vuelo devuelto: ${users[index_user][-1][0]}")
             print("--------------------------------")
             users.pop(index_user)
-            ruts.pop(index_user) 
-            return 80
+            ruts.pop(index_user)
+            vuelos.pop(index_user) 
+            return 200
         else:
             return -1
     else:
